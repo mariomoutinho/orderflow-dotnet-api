@@ -1,0 +1,102 @@
+<section class="orders-section" aria-labelledby="orders-heading">
+  <div class="section-heading">
+    <div>
+      <p class="section-kicker">ACOMPANHAMENTO</p>
+      <h2 id="orders-heading">Pedidos</h2>
+    </div>
+
+    @if (!loading && !loadError && orders.length > 0) {
+      <span class="order-count">
+        {{ orders.length }} {{ orders.length === 1 ? 'pedido' : 'pedidos' }}
+      </span>
+    }
+  </div>
+
+  @if (loading) {
+    <mat-card appearance="outlined" class="state-card loading-state">
+      <mat-progress-bar mode="indeterminate" aria-label="Carregando pedidos" />
+      <div class="state-content">
+        <mat-progress-spinner mode="indeterminate" diameter="34" aria-hidden="true" />
+        <p>Carregando pedidos...</p>
+      </div>
+    </mat-card>
+  } @else if (loadError) {
+    <mat-card appearance="outlined" class="state-card error-state" role="alert">
+      <div class="state-content">
+        <mat-icon aria-hidden="true">cloud_off</mat-icon>
+        <h3>Não conseguimos carregar a lista</h3>
+        <p>{{ loadError }}</p>
+        <button mat-stroked-button type="button" (click)="loadOrders()">
+          <mat-icon>refresh</mat-icon>
+          Tentar novamente
+        </button>
+      </div>
+    </mat-card>
+  } @else if (orders.length === 0) {
+    <mat-card appearance="outlined" class="state-card empty-state">
+      <div class="state-content">
+        <mat-icon aria-hidden="true">inventory_2</mat-icon>
+        <h3>Nenhum pedido por aqui</h3>
+        <p>Cadastre o primeiro pedido usando o formulário ao lado.</p>
+      </div>
+    </mat-card>
+  } @else {
+    <div class="orders-grid">
+      @for (order of orders; track order.id) {
+        <mat-card appearance="outlined" class="order-card">
+          <mat-card-header>
+            <div class="order-title-group">
+              <mat-card-title>{{ order.cliente }}</mat-card-title>
+              <mat-card-subtitle [title]="order.id">
+                Pedido #{{ shortId(order.id) }}
+              </mat-card-subtitle>
+            </div>
+
+            <mat-chip-set [attr.aria-label]="'Status: ' + statusLabels[order.status]">
+              <mat-chip [class]="'status-chip ' + statusClass(order.status)">
+                {{ statusLabels[order.status] }}
+              </mat-chip>
+            </mat-chip-set>
+          </mat-card-header>
+
+          <mat-card-content>
+            <dl class="order-details">
+              <div>
+                <dt>Valor total</dt>
+                <dd>{{ order.valorTotal | currency: 'BRL' : 'symbol' : '1.2-2' }}</dd>
+              </div>
+              <div>
+                <dt>Criado em</dt>
+                <dd>{{ order.criadoEm | date: 'dd/MM/yyyy, HH:mm' }}</dd>
+              </div>
+            </dl>
+
+            <div class="status-control">
+              <mat-form-field appearance="outline" subscriptSizing="dynamic">
+                <mat-label>Atualizar status</mat-label>
+                <mat-select
+                  [value]="order.status"
+                  [disabled]="isUpdating(order.id)"
+                  [attr.aria-label]="'Atualizar status do pedido de ' + order.cliente"
+                  (selectionChange)="onStatusChange(order, $event)"
+                >
+                  @for (status of statuses; track status) {
+                    <mat-option [value]="status">{{ statusLabels[status] }}</mat-option>
+                  }
+                </mat-select>
+              </mat-form-field>
+
+              @if (isUpdating(order.id)) {
+                <mat-progress-spinner
+                  mode="indeterminate"
+                  diameter="22"
+                  aria-label="Atualizando status"
+                />
+              }
+            </div>
+          </mat-card-content>
+        </mat-card>
+      }
+    </div>
+  }
+</section>

@@ -1,0 +1,60 @@
+.form-card {
+  overflow: hidden;
+  border-color: var(--orderflow-border);
+  border-radius: var(--orderflow-radius);
+  background: #fff;
+  box-shadow: 0 18px 50px rgb(45 34 68 / 8%);
+}
+
+mat-card-header {
+  padding: 1.5rem 1.5rem 0;
+}
+
+.card-icon {
+  display: grid;
+  place-items: center;
+  background: #ede3ff;
+  color: #563287;
+}
+
+.form-title {
+  margin: 0;
+  color: #2b2731;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+mat-card-subtitle {
+  margin-top: 0.2rem;
+}
+
+mat-card-content {
+  padding: 1.5rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.submit-button {
+  width: 100%;
+  min-height: 48px;
+  margin-top: 0.35rem;
+}
+
+.submit-button mat-progress-spinner {
+  display: inline-block;
+}
+
+@media (max-width: 480px) {
+  mat-card-header,
+  mat-card-content {
+    padding-inline: 1rem;
+  }
+}

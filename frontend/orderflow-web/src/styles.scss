@@ -1,0 +1,32 @@
+@use 'themes/orderflow-theme';
+
+:root {
+  --orderflow-max-width: 1180px;
+  --orderflow-page-padding: clamp(1rem, 3vw, 2rem);
+  --orderflow-radius: 20px;
+  --orderflow-text-muted: #5f6270;
+  --orderflow-border: #e4e5ec;
+  --orderflow-surface-soft: #f7f7fb;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  min-width: 320px;
+  margin: 0;
+  background: #f5f5fa;
+  color: var(--mat-sys-on-surface);
+  font: var(--mat-sys-body-medium);
+}
+
+button,
+input {
+  font: inherit;
+}
