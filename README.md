@@ -2,8 +2,7 @@
 
 Projeto pessoal de estudo e portfólio que demonstra uma solução web pequena para gerenciamento de pedidos de e-commerce. A aplicação permite criar pedidos, consultar a lista persistida e atualizar o status de cada pedido.
 
-O projeto foi pensado para praticar competências comuns a uma vaga de estágio: C#, .NET, APIs REST, integração HTTP, Angular, TypeScript, HTML, SCSS, orientação a objetos e testes automatizados. Não representa experiência profissional.
-
+O projeto foi pensado para praticar competências em: C#, .NET, APIs REST, integração HTTP, Angular, TypeScript, HTML, SCSS, orientação a objetos e testes automatizados. 
 ## Stack
 
 **Backend**
