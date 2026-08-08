@@ -41,7 +41,7 @@ describe('OrderService', () => {
       expect(orders).toEqual([order]);
     });
 
-    const request = httpTesting.expectOne('/orders');
+    const request = httpTesting.expectOne('orders');
     expect(request.request.method).toBe('GET');
     request.flush([order]);
   });
@@ -56,7 +56,7 @@ describe('OrderService', () => {
       expect(createdOrder).toEqual(order);
     });
 
-    const request = httpTesting.expectOne('/orders');
+    const request = httpTesting.expectOne('orders');
     expect(request.request.method).toBe('POST');
     expect(request.request.body).toEqual(payload);
     request.flush(order);
@@ -69,7 +69,7 @@ describe('OrderService', () => {
       expect(updatedOrder.status).toBe(status);
     });
 
-    const request = httpTesting.expectOne(`/orders/${order.id}/status`);
+    const request = httpTesting.expectOne(`orders/${order.id}/status`);
     expect(request.request.method).toBe('PATCH');
     expect(request.request.body).toEqual({ status });
     request.flush({ ...order, status });

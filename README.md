@@ -78,7 +78,16 @@ URLs locais:
 - Backend: `http://localhost:5000`
 - Interface web: `http://localhost:4200`
 
-Durante o desenvolvimento, o Angular chama apenas rotas relativas como `/orders`. O proxy encaminha essas requisições para `http://localhost:5000`, portanto não foi necessário alterar o backend nem habilitar CORS.
+Durante o desenvolvimento, o Angular chama apenas rotas relativas como `orders`. O navegador resolve a chamada como `/orders`, e o proxy a encaminha para `http://localhost:5000`; portanto, não foi necessário alterar o backend nem habilitar CORS.
+
+Em produção, a demonstração também pode ser compilada para o subcaminho `/orderflow/`:
+
+```bash
+cd frontend/orderflow-web
+npm run build:hostinger
+```
+
+Esse build mantém as chamadas HTTP relativas ao endereço da página, permitindo que a hospedagem sirva a interface e uma API compatível sob `https://coletivopindorama.com.br/orderflow/`.
 
 ## Testes e build
 

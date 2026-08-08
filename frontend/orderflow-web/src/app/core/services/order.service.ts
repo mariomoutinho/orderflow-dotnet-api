@@ -11,7 +11,7 @@ import {
 @Injectable({ providedIn: 'root' })
 export class OrderService {
   private readonly http = inject(HttpClient);
-  private readonly ordersUrl = '/orders';
+  private readonly ordersUrl = 'orders';
 
   getOrders(): Observable<Order[]> {
     return this.http.get<Order[]>(this.ordersUrl);
