@@ -3,6 +3,8 @@
 Projeto pessoal de estudo e portfólio que demonstra uma solução web pequena para gerenciamento de pedidos de e-commerce. A aplicação permite criar pedidos, consultar a lista persistida e atualizar o status de cada pedido.
 
 O projeto foi pensado para praticar competências em: C#, .NET, APIs REST, integração HTTP, Angular, TypeScript, HTML, SCSS, orientação a objetos e testes automatizados. 
+
+**Demonstração online:** [coletivopindorama.com.br/orderflow/](https://coletivopindorama.com.br/orderflow/)
 ## Stack
 
 **Backend**
@@ -89,6 +91,8 @@ npm run build:hostinger
 
 Esse build mantém as chamadas HTTP relativas ao endereço da página, permitindo que a hospedagem sirva a interface e uma API compatível sob `https://coletivopindorama.com.br/orderflow/`.
 
+Como a hospedagem compartilhada da demonstração não executa processos .NET, a produção utiliza um adaptador PHP isolado com os mesmos contratos HTTP e persistência JSON. A implementação principal e a execução local continuam usando a API ASP.NET Core deste repositório.
+
 ## Testes e build
 
 Backend, a partir da raiz:
@@ -174,6 +178,7 @@ curl -i -X POST http://localhost:5000/orders \
 - A persistência em arquivo é adequada somente a uma instância local da API.
 - Não existem autenticação, paginação, busca, exclusão ou regras de transição entre status, conforme o escopo do MVP.
 - O proxy é uma configuração de desenvolvimento; um deploy real exigiria configuração própria de hospedagem e origem.
+- A demonstração Hostinger usa uma camada de compatibilidade PHP; ela não substitui o backend .NET usado como implementação principal do projeto.
 - As fontes e os ícones Material são carregados pelo Google Fonts e precisam de conexão para a aparência completa.
 
 Uma evolução possível seria substituir o JSON por banco relacional e adicionar testes de integração dos endpoints, preservando as regras do serviço.
